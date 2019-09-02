@@ -31,19 +31,23 @@ function buttonClicked(argButtonName) {
 
   function getMoveName(argMoveId) {
     console.log("wywołano funkcję getMoveName z argumentem: " + argMoveId);
-    if (argMoveId == 1) {
-      return "kamień";
-    } else if (argMoveId == 2) {
-      return "papier";
-    } else if (argMoveId == 3) {
-      return "nożyce";
-    } else {
-      printMessage(
-        "Nie znam ruchu o id " +
-          argMoveId +
-          '. Zakładam, że chodziło o "kamień".'
-      );
-      return "kamień";
+    // Sprawdzilem ze data type argMoveId: number
+    // console.log(typeof argMoveId);
+    switch (argMoveId) {
+      // Nie daje break poniewaz mam na koncu kazdego rezultatu "return"
+      case 1:
+        return "kamień";
+      case 2:
+        return "papier";
+      case 3:
+        return "nożyce";
+      default:
+        printMessage(
+          "Nie znam ruchu o id " +
+            argMoveId +
+            '. Zakładam, że chodziło o "kamień".'
+        );
+        return "kamień";
     }
   }
 
@@ -54,16 +58,32 @@ function buttonClicked(argButtonName) {
         ", " +
         argComputerMove
     );
-    if (argPlayerMove == "papier" && argComputerMove == "kamień") {
-      printMessage("Wygrywasz!");
-    } else if (argPlayerMove == "kamień" && argComputerMove == "nożyce") {
-      printMessage("Wygrywasz!");
-    } else if (argPlayerMove == "nożyce" && argComputerMove == "papier") {
-      printMessage("Wygrywasz!");
-    } else if (argPlayerMove == argComputerMove) {
-      printMessage("Remis!");
-    } else {
-      printMessage("Przegrywasz :(");
+    // if (argPlayerMove == "papier" && argComputerMove == "kamień") {
+    //   printMessage("Wygrywasz!");
+    // } else if (argPlayerMove == "kamień" && argComputerMove == "nożyce") {
+    //   printMessage("Wygrywasz!");
+    // } else if (argPlayerMove == "nożyce" && argComputerMove == "papier") {
+    //   printMessage("Wygrywasz!");
+    // } else if (argPlayerMove == argComputerMove) {
+    //   printMessage("Remis!");
+    // } else {
+    //   printMessage("Przegrywasz :(");
+    // }
+    switch ((argPlayerMove, argComputerMove)) {
+      case argPlayerMove === "papier" || argComputerMove === "kamień":
+      case argPlayerMove === "kamień" && argComputerMove === "nożyce":
+      case argPlayerMove === "nożyce" && argComputerMove === "papier":
+        printMessage("Wygrywasz!");
+        console.log("1");
+        break;
+      case argPlayerMove === argComputerMove:
+        printMessage("Remis!");
+        console.log("2");
+        break;
+      default:
+        printMessage("Przegrywasz :(");
+        console.log("3");
+        break;
     }
     printMessage("Zagrałem " + argComputerMove + ", a Ty " + argPlayerMove);
   }
