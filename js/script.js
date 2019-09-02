@@ -1,5 +1,3 @@
-import { stringify } from "querystring";
-
 const buttonRock = document.getElementById("button-rock");
 const buttonPaper = document.getElementById("button-paper");
 const buttonScissors = document.getElementById("button-scissors");
@@ -60,26 +58,17 @@ function buttonClicked(argButtonName) {
         ", " +
         argComputerMove
     );
-    // KOD NIE DZIALA !
-    // Probowalem z przecinkiem pomiedzy i && jak widać, z 3 x =, z 2 x ==
-    // Brak mi pomyslow
-    switch ((argPlayerMove, argComputerMove)) {
-      case argPlayerMove == "papier" && argComputerMove == "kamień":
-      case argPlayerMove == "kamień" && argComputerMove == "nożyce":
-      case (argPlayerMove == "nożyce", argComputerMove == "papier"):
+    switch (true) {
+      case argPlayerMove === "papier" && argComputerMove === "kamień":
+      case argPlayerMove === "kamień" && argComputerMove === "nożyce":
+      case argPlayerMove === "nożyce" && argComputerMove === "papier":
         printMessage("Wygrywasz!");
-        console.log("1");
         break;
-      case argPlayerMove == argComputerMove:
+      case argPlayerMove === argComputerMove:
         printMessage("Remis!");
-        console.log("2");
         break;
       default:
         printMessage("Przegrywasz :(");
-        // console.log(argPlayerMove, argComputerMove);
-        // Oba stringi...
-        console.log(typeof argPlayerMove, typeof argComputerMove);
-        console.log("3");
         break;
     }
     printMessage("Zagrałem " + argComputerMove + ", a Ty " + argPlayerMove);
@@ -90,3 +79,22 @@ function buttonClicked(argButtonName) {
   console.log("ruch komputera to: " + computerMove);
   displayResult(playerMove, computerMove);
 }
+
+// switch (argPlayerMove + '-' + argComputerMove) {
+//   case "papier-kamień":
+//   case "kamień-nożyce":
+//   case "nożyce-papier":
+//     printMessage("Wygrywasz!");
+//     break;
+//
+//     ***************************************************
+//     * TEGO PONIZEJ W TYM PRZYPADKU NIE DA SIE ZROBIC
+//     * case argPlayerMove === argComputerMove:
+//     * printMessage("Remis!");
+//     * break;
+//     **************************************************
+//
+//   default:
+//     printMessage("Przegrywasz :(");
+//     break;
+// }
