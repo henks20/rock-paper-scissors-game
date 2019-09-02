@@ -1,3 +1,5 @@
+import { stringify } from "querystring";
+
 const buttonRock = document.getElementById("button-rock");
 const buttonPaper = document.getElementById("button-paper");
 const buttonScissors = document.getElementById("button-scissors");
@@ -58,30 +60,25 @@ function buttonClicked(argButtonName) {
         ", " +
         argComputerMove
     );
-    // if (argPlayerMove == "papier" && argComputerMove == "kamień") {
-    //   printMessage("Wygrywasz!");
-    // } else if (argPlayerMove == "kamień" && argComputerMove == "nożyce") {
-    //   printMessage("Wygrywasz!");
-    // } else if (argPlayerMove == "nożyce" && argComputerMove == "papier") {
-    //   printMessage("Wygrywasz!");
-    // } else if (argPlayerMove == argComputerMove) {
-    //   printMessage("Remis!");
-    // } else {
-    //   printMessage("Przegrywasz :(");
-    // }
+    // KOD NIE DZIALA !
+    // Probowalem z przecinkiem pomiedzy i && jak widać, z 3 x =, z 2 x ==
+    // Brak mi pomyslow
     switch ((argPlayerMove, argComputerMove)) {
-      case argPlayerMove === "papier" || argComputerMove === "kamień":
-      case argPlayerMove === "kamień" && argComputerMove === "nożyce":
-      case argPlayerMove === "nożyce" && argComputerMove === "papier":
+      case argPlayerMove == "papier" && argComputerMove == "kamień":
+      case argPlayerMove == "kamień" && argComputerMove == "nożyce":
+      case (argPlayerMove == "nożyce", argComputerMove == "papier"):
         printMessage("Wygrywasz!");
         console.log("1");
         break;
-      case argPlayerMove === argComputerMove:
+      case argPlayerMove == argComputerMove:
         printMessage("Remis!");
         console.log("2");
         break;
       default:
         printMessage("Przegrywasz :(");
+        // console.log(argPlayerMove, argComputerMove);
+        // Oba stringi...
+        console.log(typeof argPlayerMove, typeof argComputerMove);
         console.log("3");
         break;
     }
